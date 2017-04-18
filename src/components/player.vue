@@ -1,14 +1,15 @@
 <template>
 <div>
-    <audio ref="audio" :src="rainy" loop></audio>
-    <div class="name">雨季</div>
+    <img @click.prevent="play" ref="icon" src="/static/play.png"/>
+    <audio ref="audio" :src="src" loop></audio>
+    <div class="name">{{ name }}</div>
 </div>
 </template>
 <script>
 export default {
+  props: ['name', 'src'],
   data () {
     return {
-      rainy: '/static/rainy.m4a',
       status: false
     }
   },
@@ -31,5 +32,10 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
+.name{
+  font-size: 5em;
+  color: #fff;
+  text-shadow: #fff 1px 1px 3px;
+}
 </style>

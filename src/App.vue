@@ -8,6 +8,7 @@
 <script>
 import '@/assets/pure.css'
 import '@/assets/responsive.css'
+import '@/assets/css/font-awesome.min.css'
 import login from './components/login'
 import tip from '@/components/tip'
 import {bus} from './bus.js'
@@ -40,7 +41,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 .bg{

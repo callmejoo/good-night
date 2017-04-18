@@ -1,7 +1,9 @@
 <template>
   <div>
-    <img @click.prevent="play" ref="icon" src="/static/play.png"/>
+    <player name="暴雨" src="/static/rainy.m4a"></player>
+    <div class="sub">帮助你放松，集中注意力，提升睡眠质量。</div>
     <user name="romy"></user>
+    <i class=""
   </div>
 </template>
 
@@ -20,21 +22,8 @@ export default {
 </script>
 
 <style scoped>
-  *{
-    margin: 0;
-    padding: 0;
-  }
-  a{
-    text-decoration: none;
-  }
-  body{
-    background-image: url("/static/bg.gif");
-    background-position: center;
-    background-size: auto 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #020017;
-    color: #fff;
-    margin: 0;
-  }
+.sub{
+  font-size: 1.5em;
+  color:darkgrey
+}
 </style>
