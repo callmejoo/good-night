@@ -1,24 +1,46 @@
 <template>
     <transition name="fade">
+      <div v-show="showTip" class="box">
         <div class="tip">{{ text }}</div>
+      </div>
     </transition>
 </template>
 <script>
+import {bus} from '@/bus'
 export default {
-  props: ['text']
+  data () {
+    return {
+      showTip: false,
+      text: ''
+    }
+  },
+  mounted: function () {
+    let th = this
+    bus.$on('tip', function (val) {
+      th.text = val
+      th.showTip = true
+      setTimeout(function () {
+        th.showTip = false
+      }, 4000)
+    })
+  }
 }
+
 </script>
 <style>
+.box{
+  position: absolute;
+  top: 1%;
+  text-align: center;
+  width: 100%;
+  z-index: 5;
+}
 .tip{
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    margin-left: -150px;
-    width: 300px;
-    height: 30px;
-    line-height: 30px;
-    background-color: #fff;
-    border-radius: 10px;
+  display: inline-block;
+  padding: 0.3em .5em;
+  background-color: #fff;
+  border-radius: 0.5em;
+  min-width: 16em;
 }
 .fade-enter-active,
 .fade-leave-active {

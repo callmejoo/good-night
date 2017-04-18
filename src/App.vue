@@ -1,61 +1,35 @@
 <template>
-  <div id="app">
-    <transition name="fade">
-      <div v-if="!isLogin"
-           class="login">
-        <form class="pure-form">
-          输入你的名字来开始：
-          <input v-model="name" />
-          <select v-model="sex">
-            <option>男</option>
-            <option>女</option>
-          </select>
-          <br>
-          <button class='pure-button' @click="login">开始！</button>
-        </form>
-      </div>
-    </transition>
+  <div :class="{bg: isLogin}" id="app">
+    <login v-if="!isLogin && showLogin"></login>
     <router-view v-if="isLogin"></router-view>
-    <tip v-show="showTip" :text="t"></tip>
+    <tip></tip>
   </div>
 </template>
 <script>
 import '@/assets/pure.css'
+import '@/assets/responsive.css'
+import login from './components/login'
 import tip from '@/components/tip'
-import { bus } from '@/bus'
-
+import {bus} from './bus.js'
 export default {
   name: 'app',
   data () {
     return {
-      isLogin: true,
-      showTip: false,
-      name: '',
-      sex: '男',
-      t: ''
+      isLogin: false,
+      showLogin: false
     }
   },
   components: {
-    tip
+    tip,
+    login
   },
   mounted: function () {
-    this.$cookie.get('name') ? this.isLogin = true : this.isLogin = false
+    this.$cookie.get('name') ? this.isLogin = true : this.showLogin = true
     let th = this
-    bus.$on('tip', function (val) {
-      th.t = val
-      th.showTip = true
-      setTimeout(function () {
-        th.showTip = false
-      }, 3000)
+    bus.$on('login', function (val) {
+      th.isLogin = val
+      th.showLogin = false
     })
-  },
-  methods: {
-    login: function () {
-      this.$cookie.set('name', this.name)
-      this.$cookie.set('sex', this.sex)
-      this.isLogin = !this.isLogin
-      bus.$emit('tip', '欢迎，' + this.name)
-    }
   }
 }
 </script>
@@ -69,36 +43,33 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
+.bg{
+    background-image: url("/static/bg.gif");
+    background-position: center;
+    background-size: auto 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
+}
 body {
   background-color: #020017;
+  overflow: hidden;
+  height: 100%
 }
-
-.login {
+.top{
   position: absolute;
-  left: 50%;
-  width: 500px;
-  height: 80px;
-  top: 50%;
-  margin-top: -80px;
-  margin-left: -250px;
-  background: #fff;
-  border-radius: 10px;
-  color: #000;
-  padding: 10px 0;
-  button {
-    margin: 10px auto;
+  width: 100%;
+  top: 0;
+  justify-content: center;
+  &.top-1{
+    top: 10%;
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: margin-top 1.0s, opacity 1.5s;
-}
-
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-  margin-top: 50px;
+  &.top-2{
+    top: 20%;
+  }
+  &.top-3{
+    top: 30%;
+  }
 }
 </style>

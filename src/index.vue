@@ -1,39 +1,25 @@
 <template>
   <div>
-    <img @click.prevent="play" id="icon" src="/static/play.png"/>
-    <audio ref='audio' :src="rainy" loop></audio>
+    <img @click.prevent="play" ref="icon" src="/static/play.png"/>
+    <user name="romy"></user>
   </div>
 </template>
 
 <script>
+import user from './components/user'
+import player from './components/player'
 export default {
   data () {
     return {
-      rainy: '/static/rainy.m4a',
-      status: false
     }
   },
-  watch: {
-    status: function (val) {
-      let icon = document.getElementById('icon')
-      if (val) {
-        icon.src = '/static/pause.png'
-        this.$refs['audio'].play()
-      } else {
-        icon.src = '/static/play.png'
-        this.$refs['audio'].pause()
-      }
-    }
-  },
-  methods: {
-    play: function () {
-      this.status ? this.status = false : this.status = true
-    }
+  components: {
+    user, player
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
   *{
     margin: 0;
     padding: 0;
