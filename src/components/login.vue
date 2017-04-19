@@ -17,7 +17,6 @@
   </transition>
 </template>
 <script>
-import {bus} from '../bus.js'
 export default {
   data () {
     return {
@@ -29,8 +28,8 @@ export default {
     login: function () {
       this.$cookie.set('name', this.name)
       this.$cookie.set('sex', this.sex)
-      bus.$emit('login', true)
-      bus.$emit('tip', '欢迎，' + this.name)
+      this.$root.$emit('login', true)
+      this.$root.$emit('tip', '欢迎，' + this.name)
     }
   }
 }

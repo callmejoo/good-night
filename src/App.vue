@@ -11,7 +11,6 @@ import '@/assets/responsive.css'
 import '@/assets/css/font-awesome.min.css'
 import login from './components/login'
 import tip from '@/components/tip'
-import {bus} from './bus.js'
 export default {
   name: 'app',
   data () {
@@ -27,7 +26,7 @@ export default {
   mounted: function () {
     this.$cookie.get('name') ? this.isLogin = true : this.showLogin = true
     let th = this
-    bus.$on('login', function (val) {
+    this.$root.$on('login', function (val) {
       th.isLogin = val
       th.showLogin = false
     })
@@ -49,7 +48,7 @@ export default {
     background-size: auto 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    color: #fff;
+    color: #000;
     margin: 0;
 }
 body {

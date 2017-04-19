@@ -6,7 +6,6 @@
     </transition>
 </template>
 <script>
-import {bus} from '@/bus'
 export default {
   data () {
     return {
@@ -16,7 +15,7 @@ export default {
   },
   mounted: function () {
     let th = this
-    bus.$on('tip', function (val) {
+    this.$root.$on('tip', function (val) {
       th.text = val
       th.showTip = true
       setTimeout(function () {
