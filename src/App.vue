@@ -40,9 +40,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
 }
 .bg{
+    height: 100vh;
     background-image: url("/static/bg.gif");
     background-position: center;
     background-size: auto 100%;
@@ -54,7 +54,7 @@ export default {
 body {
   background-color: #020017;
   overflow: hidden;
-  height: 100%
+  height: 100%;
 }
 .top{
   position: absolute;

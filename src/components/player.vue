@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="player">
     <img @click.prevent="play" ref="icon" src="/static/play.png"/>
     <audio ref="audio" :src="src" loop></audio>
     <div class="name">{{ name }}</div>
@@ -33,8 +33,16 @@ export default {
 }
 </script>
 <style scoped>
+img{
+  width: 30%;
+}
+.player{
+  position: absolute;
+  top: 40%;
+  left: 20%;
+}
 .name{
-  font-size: 5em;
+  font-size: 3em;
   color: #fff;
   text-shadow: #fff 1px 1px 3px;
 }
